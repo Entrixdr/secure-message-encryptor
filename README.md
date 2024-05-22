@@ -7,7 +7,6 @@ Welcome to the Secure Message Encryptor! This is a web application designed to s
 - **AES Encryption**: Securely encrypt and decrypt messages with a user-provided password.
 - **Hash-Based Access Control**: Generate a hash to gain access to the encryption and decryption functionalities. The hash is valid for 5 minutes and users must wait 1 hour before generating a new one.
 - **Particle Background**: Enjoy a visually appealing, interactive particle background that responds to mouse movements.
-- **Dark/Light Mode**: Toggle between dark and light mode for a better user experience.
 - **Download Encrypted Message**: Download the encrypted message as a text file.
 - **Copy Hash**: Easily copy the generated hash to the clipboard for convenience.
 - **History Tracking**: Keep track of generated hashes and encrypted messages.
@@ -54,7 +53,7 @@ We welcome contributions to improve this project! Please feel free to fork the r
 4. Push to the branch (`git push origin feature/AmazingFeature`).
 5. Open a pull request.
 
-## License
+
 
 
 
