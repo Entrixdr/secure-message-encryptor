@@ -202,8 +202,8 @@
         <div class="history" id="historyContainer">
             <h3>Hash and Encryption History</h3>
             <div id="historyContent"></div>
+            <button id="clearHistoryButton" onclick="clearHistory()" style="display:none;">Clear History</button>
         </div>
-        <button onclick="toggleDarkLightMode()">Toggle Dark/Light Mode</button>
     </div>
     <div class="admin-panel" id="adminPanel">
         <h2>Admin Panel</h2>
@@ -314,11 +314,31 @@
             const newEntry = document.createElement('p');
             newEntry.textContent = entry;
             historyContent.appendChild(newEntry);
+
+            let history = JSON.parse(localStorage.getItem('history')) || [];
+            history.push(entry);
+            localStorage.setItem('history', JSON.stringify(history));
         }
 
-        function toggleDarkLightMode() {
-            const body = document.body;
-            body.classList.toggle('light-mode');
+        function clearHistory() {
+            const cooldownEnd = localStorage.getItem('cooldownEnd');
+            const now = new Date().getTime();
+            if (cooldownEnd && now < cooldownEnd) {
+                alert('Cannot clear history while cooldown is active.');
+                return;
+            }
+            localStorage.removeItem('history');
+            document.getElementById('historyContent').innerHTML = '';
+        }
+
+        function loadHistory() {
+            const historyContent = document.getElementById('historyContent');
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            history.forEach(entry => {
+                const newEntry = document.createElement('p');
+                newEntry.textContent = entry;
+                historyContent.appendChild(newEntry);
+            });
         }
 
         // Particle effect background
@@ -499,6 +519,15 @@
                 localStorage.removeItem('hash');
                 localStorage.removeItem('hashExpiration');
                 document.getElementById('copyHashButton').style.display = 'none';
+            }
+
+            loadHistory();
+            const cooldownEnd = localStorage.getItem('cooldownEnd');
+            const now = new Date().getTime();
+            if (!cooldownEnd || now > cooldownEnd) {
+                document.getElementById('clearHistoryButton').style.display = 'inline-block';
+            } else {
+                document.getElementById('clearHistoryButton').style.display = 'none';
             }
         }
 
