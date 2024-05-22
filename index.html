@@ -476,7 +476,7 @@
             }
 
             const hash = btoa(Math.random().toString()).substring(0, 12);
-            const expirationTime = now + 5 * 60 * 1000; // 5 minutes from now
+            const expirationTime = now + 60 * 60 * 1000; // 5 minutes from now
             const newCooldownEnd = now + 60 * 60 * 1000; // 1 hour from now
 
             localStorage.setItem('hash', hash);
