@@ -5,7 +5,7 @@ Welcome to the Secure Message Encryptor! This is a web application designed to s
 ## Features
 
 - **AES Encryption**: Securely encrypt and decrypt messages with a user-provided password.
-- **Hash-Based Access Control**: Generate a hash to gain access to the encryption and decryption functionalities. The hash is valid for 30 minutes and users must wait 1 hour before generating a new one.
+- **Hash-Based Access Control**: Generate a hash to gain access to the encryption and decryption functionalities. The hash is valid for 1 hour and users must wait 1 hour before generating a new one.
 - **Particle Background**: Enjoy a visually appealing, interactive particle background that responds to mouse movements.
 - **Download Encrypted Message**: Download the encrypted message as a text file.
 - **Copy Hash**: Easily copy the generated hash to the clipboard for convenience.
