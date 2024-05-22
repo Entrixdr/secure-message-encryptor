@@ -202,7 +202,7 @@
         <div class="history" id="historyContainer">
             <h3>Hash and Encryption History</h3>
             <div id="historyContent"></div>
-            <button id="clearHistoryButton" onclick="clearHistory()" style="display:none;">Clear History</button>
+            <button id="clearHistoryButton" onclick="clearHistory()">Clear History</button>
         </div>
     </div>
     <div class="admin-panel" id="adminPanel">
@@ -321,12 +321,6 @@
         }
 
         function clearHistory() {
-            const cooldownEnd = localStorage.getItem('cooldownEnd');
-            const now = new Date().getTime();
-            if (cooldownEnd && now < cooldownEnd) {
-                alert('Cannot clear history while cooldown is active.');
-                return;
-            }
             localStorage.removeItem('history');
             document.getElementById('historyContent').innerHTML = '';
         }
@@ -476,7 +470,7 @@
             }
 
             const hash = btoa(Math.random().toString()).substring(0, 12);
-            const expirationTime = now + 60 * 60 * 1000; // 5 minutes from now
+            const expirationTime = now + 60 * 60 * 1000; // 1 hour from now
             const newCooldownEnd = now + 60 * 60 * 1000; // 1 hour from now
 
             localStorage.setItem('hash', hash);
@@ -522,13 +516,6 @@
             }
 
             loadHistory();
-            const cooldownEnd = localStorage.getItem('cooldownEnd');
-            const now = new Date().getTime();
-            if (!cooldownEnd || now > cooldownEnd) {
-                document.getElementById('clearHistoryButton').style.display = 'inline-block';
-            } else {
-                document.getElementById('clearHistoryButton').style.display = 'none';
-            }
         }
 
         function validateAdminPassword() {
